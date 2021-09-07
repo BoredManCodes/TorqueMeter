@@ -8,6 +8,11 @@
  * It's in the tens of bytes.
  *
  */
+
+#TODO: Fix spelling in all documents
+#TODO: Change all references to accelerometer to strain
+#TODO: Build hardware lol
+
 #include <SPI.h>  //one of my computers won't compile without this SPI here
 #include "RF24.h"
 #include <EEPROM.h>
@@ -27,7 +32,7 @@
 //Battery level
 #define BATTERY_PIN A6
 #define DIVIDER_RATIO ((5100.0 + 2200) / 2200.0)
-#define ADC_REF_VOLT    5.0
+#define ADC_REF_VOLT    3.0
 #define ADC_RESOLUTION  1024.0
 
 //Analog Accelerometer Pins
