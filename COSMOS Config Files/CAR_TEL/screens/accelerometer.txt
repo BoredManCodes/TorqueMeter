@@ -1,0 +1,63 @@
+SCREEN AUTO AUTO 0.03
+
+GLOBAL_SETTING LABELVALUE COLORBLIND TRUE
+
+TITLE "U wot m8?"
+SETTING BACKCOLOR 162 181  205
+        SETTING TEXTCOLOR BLACK  
+
+TABBOOK
+  TABITEM "test"
+    VERTICAL
+        
+      HORIZONTALBOX
+        LABEL "LED Control"
+        BUTTON 'LED OFF' 'cmd("CAR_TEL SEND_CMD with EXECUTE 0x00")' 
+        BUTTON 'LED ON' 'cmd("CAR_TEL SEND_CMD with EXECUTE 0x01")' 
+      END
+    
+      HORIZONTALBOX
+        LABEL "Data Control"
+        BUTTON "Start" 'cmd("CAR_TEL SEND_CMD with EXECUTE 0x02")'
+        BUTTON "Stop" 'cmd("CAR_TEL SEND_CMD with EXECUTE 0x03")'
+      END
+    
+      HORIZONTALBOX
+        LABEL "Sample Rate"
+        NAMED_WIDGET SAMPLERATE TEXTFIELD 100 "4"
+        BUTTON "Update" 'cmd("CAR_TEL SAMPLE_SETTINGS with SAMPLE_RATE #{get_named_widget("SAMPLERATE").text.to_i}")'
+      END
+    
+      VERTICALBOX
+        #LABELVALUE CAR_TEL ACCELEROMETER RECEIVED_TIMESECONDS # COSMOS Received Time (UTC, Floating point, Unix epoch)
+        #LABELVALUE CAR_TEL ACCELEROMETER RECEIVED_TIMEFORMATTED # COSMOS Received Time (Local time zone, Formatted string)
+        #LABELVALUE CAR_TEL ACCELEROMETER RECEIVED_COUNT # COSMOS packet received count
+        #LABELVALUE CAR_TEL ACCELEROMETER LENGTH # Packet size so COSMOS can read the serial port.
+        #LABELVALUE CAR_TEL ACCELEROMETER PKTID # Packet id so COSMOS can identify the packet and store it.
+        LABELVALUE CAR_TEL ACCELEROMETER SAMPLE_RATE # samples per second
+        HORIZONTALBOX
+            LABEL "test" 
+            FORMATVALUE CAR_TEL ACCELEROMETER X_ACCELERATION %1.4f # x_axis accel in G's.
+        END
+    
+        LABELVALUE CAR_TEL ACCELEROMETER Y_ACCELERATION # y_axis accel in G's.
+        LABELVALUE CAR_TEL ACCELEROMETER Z_ACCELERATION # z_axis accel in G's.
+      END
+      
+      VERTICALBOX
+        SECTIONHEADER "Temperatures"
+        LABELVALUERANGEBAR CAR_TEL ACCELEROMETER X_ACCELERATION -1.5 1.5
+        LINEGRAPH CAR_TEL ACCELEROMETER X_ACCELERATION
+        SETTING GRAY_TOLERANCE 0.1
+      END
+    END
+  END
+  
+  TABITEM "Calibration"
+    VERTICAL
+    HORIZONTALBOX
+    LABEL "Accelerometer"
+    BUTTON 'Calibrate' 'cmd("CAR_TEL SEND_CMD with EXECUTE 0x05")' 
+    END
+  
+END

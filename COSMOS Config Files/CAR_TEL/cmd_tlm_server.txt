@@ -1,0 +1,2 @@
+INTERFACE CAR_TEL_INT serial_interface.rb com4 com4 57600 NONE 1 10.0 nil LENGTH 0 8 0 1
+  TARGET CAR_TEL

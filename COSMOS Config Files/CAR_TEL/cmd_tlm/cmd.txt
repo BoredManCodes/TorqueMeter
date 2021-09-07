@@ -1,0 +1,15 @@
+COMMAND car_tel sample_settings LITTLE_ENDIAN "update settings"
+  APPEND_PARAMETER pktid 8 uint 0 0 0 "command packet identifier"
+  APPEND_PARAMETER sample_rate 8 uint 1 255 1 "samples per second"
+  APPEND_PARAMETER sample_time 16 uint 0 65535 0 "milliseconds to to record"
+    
+
+COMMAND car_tel send_cmd LITTLE_ENDIAN "Execute command"
+  APPEND_PARAMETER pktid 8 uint 1 1 1 "command packet identifier"
+  APPEND_PARAMETER execute 8 uint 0 255 0 "execute command"
+    #0x00-None
+    #0x01-test
+    #0x02-send
+    #0x03-stop
+    #0x04-acceleration nuetral
+    #0x05-acceleration calibrate

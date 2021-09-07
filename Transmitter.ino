@@ -1,4 +1,13 @@
-
+/*
+ * This sketch reads and sends data to Ball Aerospace's COSMOS.
+ * Stolen from: William Osman
+ *
+ * Modified by Trent Buckley 07/09/2021
+ *
+ * There is an issue when trying to send too much data at the same time. I'm not sure which end it's on.
+ * It's in the tens of bytes.
+ *
+ */
 #include <SPI.h>  //one of my computers won't compile without this SPI here
 #include "RF24.h"
 #include <EEPROM.h>
